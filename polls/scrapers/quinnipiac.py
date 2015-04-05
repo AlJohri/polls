@@ -1,3 +1,5 @@
+from polls.models import firebase
+
 import re, requests, lxml.html, datetime
 import dateutil.parser
 
@@ -17,7 +19,10 @@ class QuinnipiacCurrent(object):
 			states, text = re.search(r"^\((.*)\)\s-\s(.*)", text).groups()
 			states = states.split(", ")
 
+			poll = {"id": release_id, "states": states, "text": text}
+
 			if date >= datetime.datetime.today().date() - datetime.timedelta(1):
+				result = firebase.post(url='/quinnipiac', data=poll, headers={'print': 'pretty'})
 				print release_id, " | ", date, "|", states, "|", text
 			else:
 				break

@@ -24,5 +24,11 @@ angular.module('pollsApp')
         templateUrl: 'views/hp.html',
         controller: 'HPCtrl'
       })
+
+      .when('/quinnipiac', {
+        templateUrl: 'views/quinnipiac.html',
+        controller: 'QuinnipiacCtrl'
+      })
+
       .otherwise({redirectTo: '/'});
   }]);

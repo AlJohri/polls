@@ -1,8 +1,8 @@
-<p><a class="btn btn-lg btn-success" ng-click="refreshHP()">HP <span class="glyphicon glyphicon-download"></span></a></p>
+<p><a class="btn btn-lg btn-success" ng-click="refreshQuinnipiac()">Quinnipiac <span class="glyphicon glyphicon-download"></span></a></p>
 
-<!-- <pre>{{hp | json}}</pre> -->
+<!-- <pre>{{quinnipiac | json}}</pre> -->
 
-<h2>HP</h2>
+<h2>Quinnipiac</h2>
 
 <table class="table table-striped">
   <thead>
@@ -16,8 +16,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="question in hp">
-      <td><a href="{{'http://elections.huffingtonpost.com/pollster/polls/-' + question.poll_id}}">{{question.id}}</a></td>
+    <tr ng-repeat="question in quinnipiac">
+      <td><a href="">{{question.id}}</a></td>
       <td>{{question.name}}</td>
       <td>{{question.pollster}}</td>
       <td>{{(question.start_date | date:'M/dd') + " - " + (question.end_date | date:'M/dd')}}</td>
