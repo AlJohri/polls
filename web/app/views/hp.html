@@ -22,8 +22,8 @@
       <td><a href="{{'http://elections.huffingtonpost.com/pollster/polls/-' + question.poll_id}}">{{question.id}}</a></td>
       <td>{{question.name}}</td>
       <td>{{question.pollster}}</td>
-      <td>{{question.start_date + " to " + question.end_date}}</td>
-      <td>{{question.last_updated}}</td>
+      <td>{{(question.start_date | date:'M/dd') + " - " + (question.end_date | date:'M/dd')}}</td>
+      <td>{{question.last_updated | date:'M/dd'}}</td>
       <td>{{ question.responses | pluck2:'choice':'value' | join:', ' }}</td>
     </tr>
   </tbody>
