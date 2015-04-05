@@ -1,4 +1,4 @@
-from polls.scrapers import RCPCurrent, HPCurrent
+from polls.scrapers import RCPCurrent, HPCurrent, QuinnipiacCurrent
 import os, threading
 
 from flask import Flask
@@ -25,7 +25,7 @@ def hp():
 
 @app.route("/quinnipiac")
 def quinnipiac():
-	t = threading.Thread(name="quinnipiac", target=HPCurrent.download, args=())
+	t = threading.Thread(name="quinnipiac", target=QuinnipiacCurrent.download, args=())
 	t.start()
 	return "started"
 

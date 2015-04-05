@@ -7,6 +7,9 @@ class QuinnipiacCurrent(object):
 
 	@staticmethod
 	def download():
+
+		firebase.delete('/quinnipiac', None)
+
 		url = "http://www.quinnipiac.edu/news-and-events/quinnipiac-university-poll/search-releases/search-results/?What=&Submit=Submit&strArea=%3B&strSubject=&strTime=28&strAddr="
 		response = requests.get(url)
 		doc = lxml.html.fromstring(response.content)
@@ -19,9 +22,9 @@ class QuinnipiacCurrent(object):
 			states, text = re.search(r"^\((.*)\)\s-\s(.*)", text).groups()
 			states = states.split(", ")
 
-			poll = {"id": release_id, "states": states, "text": text}
+			poll = {"id": release_id, "date": date, "states": states, "text": text}
 
-			if date >= datetime.datetime.today().date() - datetime.timedelta(1):
+			if date >= datetime.datetime.today().date() - datetime.timedelta(3):
 				result = firebase.post(url='/quinnipiac', data=poll, headers={'print': 'pretty'})
 				print release_id, " | ", date, "|", states, "|", text
 			else:

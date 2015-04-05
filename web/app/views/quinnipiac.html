@@ -7,22 +7,19 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Poll</th>
-      <th>Name</th>
-      <th>Pollster</th>
+      <th>Release ID</th>
       <th>Date</th>
-      <th>Last Updated</th>
-      <th>Candidates</th>
+      <th>Title</th>
+      <th>States</th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="question in quinnipiac">
-      <td><a href="">{{question.id}}</a></td>
-      <td>{{question.name}}</td>
-      <td>{{question.pollster}}</td>
-      <td>{{(question.start_date | date:'M/dd') + " - " + (question.end_date | date:'M/dd')}}</td>
-      <td>{{question.last_updated | date:'M/dd'}}</td>
-      <td><pre>{{ question.responses | pluck2:'choice':'value' | join:'\n' }}</pre></td>
+
+    <tr ng-repeat="poll in quinnipiac">
+      <td><a href="http://www.quinnipiac.edu/news-and-events/quinnipiac-university-poll/search-releases/search-results/release-detail?ReleaseID={{poll.id}}&What=&strArea=;&strTime=28">{{poll.id}}</a></td>
+      <td>{{poll.date}}</td>
+      <td>{{poll.text}}</td>
+      <td>{{poll.states}}</td>
     </tr>
   </tbody>
 </table>
