@@ -12,14 +12,14 @@ app = Flask(__name__)
 # 	return response
 
 @app.route("/rcp")
-@cross_origin("*")
+@cross_origin()
 def rcp():
     t = threading.Thread(name="rcp", target=RCPCurrent.download, args=())
     t.start()
     return "started"
 
 @app.route("/hp")
-@cross_origin("*")
+@cross_origin()
 def hp():
     t = threading.Thread(name="hp", target=HPCurrent.download, args=())
     t.start()
