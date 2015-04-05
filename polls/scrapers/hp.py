@@ -23,7 +23,7 @@ class HPCurrent(object):
 			url = "http://elections.huffingtonpost.com/pollster/api/polls?page=%d" % page
 			for poll in requests.get(url).json():
 				date = dateutil.parser.parse(poll['last_updated']).date()
-				if date >= datetime.datetime.today().date() - datetime.timedelta(1):
+				if date >= datetime.datetime.today().date() - datetime.timedelta(2):
 					print date, poll['pollster']
 					for i, question in enumerate(poll['questions']):
 						question['id'] = str(poll['id']) + "-" + str(i)
