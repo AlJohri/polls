@@ -1,0 +1,28 @@
+<!-- {{workerReplyUI}} -->
+
+<p><a class="btn btn-lg btn-success" ng-click="refreshRCP()">HP <span class="glyphicon glyphicon-download"></span></a></p>
+
+<!-- <pre>{{hp | json}}</pre> -->
+
+<h2>HP</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Poll</th>
+      <th>Name</th>
+      <th>Pollster</th>
+      <th>Date</th>
+      <th>Candidates</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="question in hp">
+      <td><a href="{{'http://elections.huffingtonpost.com/pollster/polls/-' + question.poll_id}}">{{question.id}}</a></td>
+      <td>{{question.name}}</td>
+      <td>{{question.pollster}}</td>
+      <td>{{question.start_date + " to " + question.end_date}}</td>
+      <td>{{ question.responses | pluck2:'choice':'value' | join:', ' }}</td>
+    </tr>
+  </tbody>
+</table>

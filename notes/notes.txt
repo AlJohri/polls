@@ -1,0 +1,16 @@
+rebootillinois $("link[rel=canonical]")[0]
+
+
+record status code 404, or moved
+
+
+
+
+http://www.realclearpolitics.com/epolls/other/xml/1527_polling_module.xml
+
+http://www.realclearpolitics.com/politics_nation/SP%26RDelawarePollNov09.pdf
+
+
+http://www.publicpolicypolling.com/main/polls/
+http://www.publicpolicypolling.com/main/2015-archive.html
+

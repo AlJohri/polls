@@ -1,0 +1,28 @@
+<!-- {{workerReplyUI}} -->
+
+<p><a class="btn btn-lg btn-success" ng-click="refreshRCP()">RCP <span class="glyphicon glyphicon-download"></span></a></p>
+
+<!-- <pre>{{rcp | json}}</pre> -->
+
+<h2>RCP</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Poll</th>
+      <th>Module</th>
+      <th>Pollster</th>
+      <th>Date</th>
+      <th>Candidates</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="poll in rcp">
+      <td>{{poll.module_poll.id}}</td>
+      <td><a href="{{poll.poll.link}}">{{poll.poll.poll_id}}</a></td>
+      <td>{{poll.poll.pollster}}</td>
+      <td>{{poll.module_poll.date}}</td>
+      <td>{{ poll.poll.candidate | pluck2:'name':'value' | join:', ' }}</td>
+    </tr>
+  </tbody>
+</table>

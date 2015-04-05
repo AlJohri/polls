@@ -1,0 +1,1 @@
+import polls.scrapers.__main__
