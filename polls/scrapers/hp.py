@@ -32,9 +32,9 @@ class HPCurrent(object):
 							subpopulation['name'] = question['name']
 							subpopulation['poll_id'] = poll['id']
 							subpopulation['pollster'] = poll['pollster']
-							subpopulation['start_date'] = poll['start_date']
-							subpopulation['end_date'] = poll['end_date']
-							subpopulation['last_updated'] = poll['last_updated']
+							subpopulation['start_date'] = dateutil.parser.parse(poll['start_date'])
+							subpopulation['end_date'] = dateutil.parser.parse(poll['end_date'])
+							subpopulation['last_updated'] = dateutil.parser.parse(poll['last_updated'])
 							result = firebase.post(url='/hp', data=subpopulation, headers={'print': 'pretty'})
 				else:
 					cont = False
