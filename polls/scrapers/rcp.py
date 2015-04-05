@@ -27,7 +27,7 @@ class RCPCurrent(object):
 
 			module['rcp_polls']['moduleInfo']['lastBuildDate'] = dateutil.parser.parse(module['rcp_polls']['moduleInfo']['lastBuildDate'])
 
-			if poll['date'] > module['rcp_polls']['moduleInfo']['lastBuildDate'].date():
+			if poll['date'].date() > module['rcp_polls']['moduleInfo']['lastBuildDate'].date():
 				return {"id": "", "date": "", "last_build_date": module['rcp_polls']['moduleInfo']['lastBuildDate']}
 
 			for module_poll in module['rcp_polls']['poll']:
