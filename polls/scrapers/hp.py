@@ -15,6 +15,8 @@ class HPCurrent(object):
 	@staticmethod
 	def download():
 
+		result = firebase.put(url='/status', name="hp", data="loading", headers={'print': 'pretty'})
+
 		firebase.delete('/hp', None)
 
 		page = 0
@@ -40,6 +42,8 @@ class HPCurrent(object):
 					cont = False
 					break
 			page += 1
+
+		result = firebase.put(url='/status', name="hp", data="complete", headers={'print': 'pretty'})
 
 def url(poll): return u'http://elections.huffingtonpost.com/pollster/polls/-%s' % poll['_id']
 

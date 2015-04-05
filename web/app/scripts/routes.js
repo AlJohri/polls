@@ -13,6 +13,7 @@ angular.module('pollsApp')
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
+        controller: 'MainCtrl'
       })
 
       .when('/rcp', {

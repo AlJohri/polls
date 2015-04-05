@@ -2,26 +2,13 @@
 
 /**
  * @ngdoc function
- * @name pollsApp.controller:RCPCtrl
+ * @name pollsApp.controller:QuinnipiacCtrl
  * @description
- * # RCPCtrl
+ * # QuinnipiacCtrl
  * Controller of the pollsApp
  */
 angular.module('pollsApp')
-  .controller('QuinnipiacCtrl', function ($scope, Ref, $firebaseArray, $timeout, $http, $q) {
-
-    $scope.quinnipiac = $firebaseArray(Ref.child('quinnipiac'));
-    $scope.quinnipiac.$loaded().catch(alert);
-
-    function alert(msg) {
-      $scope.err = msg;
-      $timeout(function() {
-        $scope.err = null;
-      }, 5000);
-    }
-
-    $scope.refreshQuinnipiac = function() {
-      $http.get("http://todayspolls.herokuapp.com/quinnipiac")
-    }
-
+  .controller('QuinnipiacCtrl', function ($scope) {
+    $scope.quinnipiac = $scope.$parent.quinnipiac;
+    $scope.refreshQuinnipiac = $scope.$parent.refreshQuinnipiac;
   });

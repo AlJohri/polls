@@ -8,6 +8,8 @@ class QuinnipiacCurrent(object):
 	@staticmethod
 	def download():
 
+		result = firebase.put(url='/status', name="quinnipiac", data="loading", headers={'print': 'pretty'})
+
 		firebase.delete('/quinnipiac', None)
 
 		url = "http://www.quinnipiac.edu/news-and-events/quinnipiac-university-poll/search-releases/search-results/?What=&Submit=Submit&strArea=%3B&strSubject=&strTime=28&strAddr="
@@ -29,6 +31,8 @@ class QuinnipiacCurrent(object):
 				print release_id, " | ", date, "|", states, "|", text
 			else:
 				break
+
+		result = firebase.put(url='/status', name="quinnipiac", data="complete", headers={'print': 'pretty'})
 
 class QuinnipiacFuture(object):
 	url = ""

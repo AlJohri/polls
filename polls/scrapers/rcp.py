@@ -46,6 +46,8 @@ class RCPCurrent(object):
 				# return sorted([x['updated'] for x in potential_polls])[-1]
 				raise Exception("find too many (%d) polls in module poll for module %s" % (len(potential_polls), poll['poll_id']))
 
+		result = firebase.put(url='/status', name="rcp", data="loading", headers={'print': 'pretty'})
+
 		firebase.delete('/rcp', None)
 
 		data = requests.get("http://cdn.realclearpolitics.com/epolls/json/latest_election_polls_clean.js").json()
@@ -55,6 +57,8 @@ class RCPCurrent(object):
 				module_poll = find_poll_in_module(poll)
 				result = firebase.post(url='/rcp', data={"poll": poll, "module_poll": module_poll}, headers={'print': 'pretty'})
 				print module_poll['id'], "|", poll['date'], poll['pollster'], "|", poll['race'], "|", poll['poll_id']
+
+		result = firebase.put(url='/status', name="rcp", data="complete", headers={'print': 'pretty'})
 
 def get_module_ids():
 	response = requests.get("http://cdn.realclearpolitics.com/epolls/json/")

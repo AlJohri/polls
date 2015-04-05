@@ -48,8 +48,10 @@
       </div>
     </div>
 
-    <div class="container">
-    <div ng-view=""></div>
+    <div ng-controller="ContainerCtrl">
+      <div class="container">
+      <div ng-view=""></div>
+    </div>
     </div>
 
     <div class="footer">
@@ -89,7 +91,9 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/container.js"></script>
         <script src="scripts/controllers/header.js"></script>
+        <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/hp.js"></script>
         <script src="scripts/controllers/rcp.js"></script>
         <script src="scripts/controllers/quinnipiac.js"></script>
