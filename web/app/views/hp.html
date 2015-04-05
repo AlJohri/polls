@@ -13,6 +13,7 @@
       <th>Name</th>
       <th>Pollster</th>
       <th>Date</th>
+      <th>Last Updated</th>
       <th>Candidates</th>
     </tr>
   </thead>
@@ -22,6 +23,7 @@
       <td>{{question.name}}</td>
       <td>{{question.pollster}}</td>
       <td>{{question.start_date + " to " + question.end_date}}</td>
+      <td>{{question.last_updated}}</td>
       <td>{{ question.responses | pluck2:'choice':'value' | join:', ' }}</td>
     </tr>
   </tbody>

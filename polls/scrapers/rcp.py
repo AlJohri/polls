@@ -26,7 +26,7 @@ class RCPCurrent(object):
 			module = json.loads(response.content.replace("\\'", "'"))
 
 			if date > dateutil.parser.parse(module['rcp_polls']['moduleInfo']['lastBuildDate']).date():
-				return {"id": "", "date": ""}
+				return {"id": "", "date": "", "last_build_date": module['rcp_polls']['moduleInfo']['lastBuildDate']}
 
 			for module_poll in module['rcp_polls']['poll']:
 				if module_poll['type'] not in ['poll', 'poll_rcp_avg']: continue
