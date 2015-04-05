@@ -25,6 +25,8 @@ class RCPCurrent(object):
 			response = requests.get("http://cdn.realclearpolitics.com/epolls/json/%s_polling_module.js" % poll['poll_id'])
 			module = json.loads(response.content.replace("\\'", "'"))
 
+			module['rcp_polls']['moduleInfo']['lastBuildDate'] = dateutil.parser.parse(module['rcp_polls']['moduleInfo']['lastBuildDate'])
+
 			if poll['date'] > dateutil.parser.parse(module['rcp_polls']['moduleInfo']['lastBuildDate']).date():
 				return {"id": "", "date": "", "last_build_date": module['rcp_polls']['moduleInfo']['lastBuildDate']}
 
@@ -33,7 +35,7 @@ class RCPCurrent(object):
 				module_poll_pollster = module_poll['pollster']
 				module_poll_candidates_values = sorted([(x['name'], x['value']) for x in module_poll['candidate']])
 				module_poll_updated = dateutil.parser.parse(module_poll['updated']).date()
-				module_poll['last_build_date'] = dateutil.parser.parse(module['rcp_polls']['moduleInfo']['lastBuildDate'])
+				module_poll['last_build_date'] = module['rcp_polls']['moduleInfo']['lastBuildDate']
 				# print module_poll['pollster'], module_poll_candidates_values
 				# module_poll_pollster == pollster and
 				if module_poll_updated == poll['date'] and candidates_values == module_poll_candidates_values:
