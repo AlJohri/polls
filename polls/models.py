@@ -1,10 +1,13 @@
+import os
 from firebase import firebase
 firebase = firebase.FirebaseApplication('https://aljohri-polls.firebaseio.com', None)
 
+MONGO_URL = os.getenv('MONGOLAB_URI', 'mongodb://localhost:27017/polls')
+
 from pprint import pprint as pp
 from pymongo import MongoClient
-client = MongoClient()
-db = client.polls
+client = MongoClient(MONGO_URL)
+db = client
 
 hp_polls = db.hp_polls
 hp_questions = db.hp_questions

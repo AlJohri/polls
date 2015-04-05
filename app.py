@@ -2,7 +2,7 @@ from polls.scrapers import RCPCurrent, HPCurrent
 import os, threading
 
 from flask import Flask
-# from flask.ext.cors import cross_origin
+from flask.ext.pymongo import PyMongo
 from flask.ext.cors import cross_origin
 app = Flask(__name__)
 
