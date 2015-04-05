@@ -4,7 +4,7 @@
 View the most recent polls from various aggregators and sources.
 </p>
 
-<pre>{{status | json}}</pre>
+<!-- <pre>{{status | json}}</pre> -->
 
 <p><a class="btn btn-lg btn-success" ng-click="refreshAll()">Refresh All <span class="glyphicon glyphicon-download"></span></a></p>
 
@@ -15,8 +15,8 @@ View the most recent polls from various aggregators and sources.
   		class="glyphicon"
   		ng-class="{
         'glyphicon-refresh glyphicon-refresh-animate': status.$getRecord('rcp')['$value'] === 'loading',
-        'glyphicon-ok': status.$getRecord('rcp')['$value'] === 'complete',
-        'glyphicon-remove': status.$getRecord('rcp') == undefined
+        'glyphicon-ok text-success': status.$getRecord('rcp')['$value'] === 'complete',
+        'glyphicon-remove text-danger': status.$getRecord('rcp') == undefined
         }">
   	</span>
   </li>
@@ -26,8 +26,8 @@ View the most recent polls from various aggregators and sources.
   		class="glyphicon"
   		ng-class="{
         'glyphicon-refresh glyphicon-refresh-animate': status.$getRecord('hp')['$value'] === 'loading',
-        'glyphicon-ok': status.$getRecord('hp')['$value'] === 'complete',
-        'glyphicon-remove': status.$getRecord('hp') == undefined
+        'glyphicon-ok text-success': status.$getRecord('hp')['$value'] === 'complete',
+        'glyphicon-remove text-danger': status.$getRecord('hp') == undefined
       }">
   	</span>
   </li>
@@ -37,8 +37,8 @@ View the most recent polls from various aggregators and sources.
       class="glyphicon"
       ng-class="{
         'glyphicon-refresh glyphicon-refresh-animate': status.$getRecord('dkos')['$value'] === 'loading',
-        'glyphicon-ok': status.$getRecord('dkos')['$value'] === 'complete',
-        'glyphicon-remove': status.$getRecord('dkos') == undefined
+        'glyphicon-ok text-success': status.$getRecord('dkos')['$value'] === 'complete',
+        'glyphicon-remove text-danger': status.$getRecord('dkos') == undefined
       }">
     </span>
   </li>
@@ -48,8 +48,8 @@ View the most recent polls from various aggregators and sources.
       class="glyphicon"
       ng-class="{
         'glyphicon-refresh glyphicon-refresh-animate': status.$getRecord('quinnipiac')['$value'] === 'loading',
-        'glyphicon-ok': status.$getRecord('quinnipiac')['$value'] === 'complete',
-        'glyphicon-remove': status.$getRecord('quinnipiac') == undefined
+        'glyphicon-ok text-success': status.$getRecord('quinnipiac')['$value'] === 'complete',
+        'glyphicon-remove text-danger': status.$getRecord('quinnipiac') == undefined
       }">
     </span>
   </li>
@@ -59,8 +59,8 @@ View the most recent polls from various aggregators and sources.
       class="glyphicon"
       ng-class="{
         'glyphicon-refresh glyphicon-refresh-animate': status.$getRecord('ppp')['$value'] === 'loading',
-        'glyphicon-ok': status.$getRecord('ppp')['$value'] === 'complete',
-        'glyphicon-remove': status.$getRecord('ppp') == undefined
+        'glyphicon-ok text-success': status.$getRecord('ppp')['$value'] === 'complete',
+        'glyphicon-remove text-danger': status.$getRecord('ppp') == undefined
       }">
     </span>
   </li>
