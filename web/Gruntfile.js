@@ -112,20 +112,6 @@ module.exports = function (grunt) {
           base: '<%= yeoman.dist %>'
         }
       },
-      buildcontrol: {
-        options: {
-          dir: 'dist',
-          commit: true,
-          push: true,
-          message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
-        },
-        pages: {
-          options: {
-            remote: 'git@github.com:AlJohri/polls.git',
-            branch: 'gh-pages'
-          }
-        },
-      }
     },
 
     // Make sure code styles are up to par and there are no obvious mistakes
@@ -436,7 +422,23 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+
+    buildcontrol: {
+      options: {
+        dir: 'dist',
+        commit: true,
+        push: true,
+        message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+      },
+      pages: {
+        options: {
+          remote: 'git@github.com:AlJohri/polls.git',
+          branch: 'gh-pages'
+        }
+      },
     }
+
   });
 
 
