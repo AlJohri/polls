@@ -24,6 +24,7 @@ class HPCurrent(object):
 		while cont:
 			url = "http://elections.huffingtonpost.com/pollster/api/polls?page=%d" % page
 			for poll in requests.get(url).json():
+				subpopulations = []
 				date = dateutil.parser.parse(poll['last_updated']).date()
 				if date >= datetime.datetime.today().date() - datetime.timedelta(2):
 					print date, poll['pollster']
@@ -37,7 +38,9 @@ class HPCurrent(object):
 							subpopulation['start_date'] = dateutil.parser.parse(poll['start_date'])
 							subpopulation['end_date'] = dateutil.parser.parse(poll['end_date'])
 							subpopulation['last_updated'] = dateutil.parser.parse(poll['last_updated'])
-							result = firebase.post(url='/hp', data=subpopulation, headers={'print': 'pretty'})
+							subpopulations.append(subpopulation)
+							print subpopulation['id']
+					result = firebase.post(url='/hp', data=subpopulations, headers={'print': 'pretty'})
 				else:
 					cont = False
 					break
