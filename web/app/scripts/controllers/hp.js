@@ -20,8 +20,8 @@ angular.module('pollsApp')
       }, 5000);
     }
 
-    $scope.refreshRCP = function() {
-      $http.get("http://127.0.0.1:5000/hp")
+    $scope.refreshHP = function() {
+      $http.get("http://todayspolls.herokuapp.com/hp")
     }
 
   });

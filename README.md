@@ -8,3 +8,7 @@ python -m polls.scrapers.hp
 
 # python -m polls.analysis.sources
 ```
+
+```
+grunt buildcontrol:pages
+```

@@ -21,7 +21,7 @@ angular.module('pollsApp')
     }
 
     $scope.refreshRCP = function() {
-      $http.get("http://127.0.0.1:5000/rcp")
+      $http.get("http://todayspolls.herokuapp.com/rcp")
     }
 
   });
