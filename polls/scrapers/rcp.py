@@ -33,6 +33,7 @@ class RCPCurrent(object):
 				module_poll_pollster = module_poll['pollster']
 				module_poll_candidates_values = sorted([(x['name'], x['value']) for x in module_poll['candidate']])
 				module_poll_updated = dateutil.parser.parse(module_poll['updated']).date()
+				module_poll['last_build_date'] = module['rcp_polls']['moduleInfo']['lastBuildDate']
 				# print module_poll['pollster'], module_poll_candidates_values
 				# module_poll_pollster == pollster and
 				if module_poll_updated == date and candidates_values == module_poll_candidates_values:
