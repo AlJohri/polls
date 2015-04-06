@@ -64,6 +64,28 @@ View the most recent polls from various aggregators and sources.
       }">
     </span>
   </li>
+  <li class="list-group-item">
+    Marist
+    <span
+      class="glyphicon"
+      ng-class="{
+        'glyphicon-refresh glyphicon-refresh-animate': status.$getRecord('marist')['$value'] === 'loading',
+        'glyphicon-ok text-success': status.$getRecord('marist')['$value'] === 'complete',
+        'glyphicon-remove text-danger': status.$getRecord('marist') == undefined
+      }">
+    </span>
+  </li>
+  <li class="list-group-item">
+    AP
+    <span
+      class="glyphicon"
+      ng-class="{
+        'glyphicon-refresh glyphicon-refresh-animate': status.$getRecord('marist')['$value'] === 'loading',
+        'glyphicon-ok text-success': status.$getRecord('marist')['$value'] === 'complete',
+        'glyphicon-remove text-danger': status.$getRecord('marist') == undefined
+      }">
+    </span>
+  </li>
 </ul>
 
 <!-- glyphicon-remove -->

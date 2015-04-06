@@ -9,6 +9,7 @@
  */
 angular.module('pollsApp')
   .controller('RCPCtrl', function ($scope) {
+  	$scope.status = $scope.$parent.status;
     $scope.rcp = $scope.$parent.rcp;
     $scope.refreshRCP = $scope.$parent.refreshRCP;
   });

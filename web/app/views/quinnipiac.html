@@ -1,4 +1,17 @@
-<p><a class="btn btn-lg btn-success" ng-click="refreshQuinnipiac()">Quinnipiac <span class="glyphicon glyphicon-download"></span></a></p>
+<p>
+
+<a class="btn btn-lg btn-success" ng-click="refreshQuinnipiac()">Quinnipiac <span class="glyphicon glyphicon-download"></span></a>
+
+<span
+  class="glyphicon"
+  ng-class="{
+    'glyphicon-refresh glyphicon-refresh-animate': status.$getRecord('quinnipiac')['$value'] === 'loading',
+    'glyphicon-ok text-success': status.$getRecord('quinnipiac')['$value'] === 'complete',
+    'glyphicon-remove text-danger': status.$getRecord('quinnipiac') == undefined
+  }">
+</span>
+
+</p>
 
 <!-- <pre>{{quinnipiac | json}}</pre> -->
 

@@ -9,6 +9,7 @@
  */
 angular.module('pollsApp')
   .controller('QuinnipiacCtrl', function ($scope) {
+  	$scope.status = $scope.$parent.status;
     $scope.quinnipiac = $scope.$parent.quinnipiac;
     $scope.refreshQuinnipiac = $scope.$parent.refreshQuinnipiac;
   });
