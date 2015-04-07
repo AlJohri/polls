@@ -10,7 +10,7 @@ View the most recent polls from various aggregators and sources.
 
 <ul class="list-group">
   <li class="list-group-item">
-  	Real Clear Politcs
+  	Real Clear Politics
   	<span
   		class="glyphicon"
   		ng-class="{
@@ -83,6 +83,17 @@ View the most recent polls from various aggregators and sources.
         'glyphicon-refresh glyphicon-refresh-animate': status.$getRecord('marist')['$value'] === 'loading',
         'glyphicon-ok text-success': status.$getRecord('marist')['$value'] === 'complete',
         'glyphicon-remove text-danger': status.$getRecord('marist') == undefined
+      }">
+    </span>
+  </li>
+  <li class="list-group-item">
+    SurveyUSA
+    <span
+      class="glyphicon"
+      ng-class="{
+        'glyphicon-refresh glyphicon-refresh-animate': status.$getRecord('surveyusa')['$value'] === 'loading',
+        'glyphicon-ok text-success': status.$getRecord('surveyusa')['$value'] === 'complete',
+        'glyphicon-remove text-danger': status.$getRecord('surveyusa') == undefined
       }">
     </span>
   </li>
