@@ -6,6 +6,9 @@ from collections import defaultdict, OrderedDict
 
 import dateutil.parser
 
+from HTMLParser import HTMLParser
+parser = HTMLParser()
+
 logging.basicConfig(level=logging.DEBUG)
 
 requests_log = logging.getLogger("requests.packages.urllib3")
@@ -20,12 +23,15 @@ class RCPCurrent(object):
 			pollster = poll['pollster']
 			candidates_values = sorted([(x['name'], x['value']) for x in poll['candidate']])
 			poll['date'] = dateutil.parser.parse(poll['date'])
+			poll['pollster'] = parser.unescape(poll['pollster'])
 			# print candidates_values
 			# print ""
 			response = requests.get("http://cdn.realclearpolitics.com/epolls/json/%s_polling_module.js" % poll['poll_id'])
-			module = json.loads(response.content.replace("\\'", "'"))
-
-			module['rcp_polls']['moduleInfo']['lastBuildDate'] = dateutil.parser.parse(module['rcp_polls']['moduleInfo']['lastBuildDate'])
+			try:
+				module = json.loads(response.content.replace("\\'", "'"))
+				module['rcp_polls']['moduleInfo']['lastBuildDate'] = dateutil.parser.parse(module['rcp_polls']['moduleInfo']['lastBuildDate'])
+			except ValueError:
+				return {"id": "", "date": "", "last_build_date": ""}
 
 			if poll['date'].date() > module['rcp_polls']['moduleInfo']['lastBuildDate'].date():
 				return {"id": "", "date": "", "last_build_date": module['rcp_polls']['moduleInfo']['lastBuildDate']}
@@ -43,8 +49,13 @@ class RCPCurrent(object):
 			if len(potential_polls) == 1:
 				return potential_polls[0]
 			else:
-				# return sorted([x['updated'] for x in potential_polls])[-1]
-				raise Exception("find too many (%d) polls in module poll for module %s" % (len(potential_polls), poll['poll_id']))
+				print("found %d polls in module poll for module %s with date %s and last build date %s" % (
+					len(potential_polls),
+					poll['poll_id'],
+					poll['date'].date(),
+					module['rcp_polls']['moduleInfo']['lastBuildDate'].date()
+				))
+				return {"id": "", "date": "", "last_build_date": module['rcp_polls']['moduleInfo']['lastBuildDate']}
 
 		result = firebase.put(url='/status', name="rcp", data="loading", headers={'print': 'pretty'})
 

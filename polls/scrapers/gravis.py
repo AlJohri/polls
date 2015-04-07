@@ -1,4 +1,7 @@
-import requests, lxml.html
+from polls.models import firebase
+
+import re, requests, lxml.html, datetime
+import dateutil.parser
 
 page = 0
 cont = True

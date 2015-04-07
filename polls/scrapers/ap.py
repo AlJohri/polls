@@ -1,4 +1,7 @@
-import requests, lxml.html
+from polls.models import firebase
+
+import re, requests, lxml.html, datetime
+import dateutil.parser
 
 # http://surveys.ap.org/
 # http://ap-gfkpoll.com/poll-archives
