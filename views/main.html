@@ -1,29 +1,16 @@
-<h1>Polls</h1> <p> View the most recent polls from various aggregators and sources. </p> <!-- <pre>{{status | json}}</pre> --> <p><a class="btn btn-lg btn-success" ng-click="refreshAll()">Refresh All <span class="glyphicon glyphicon-download"></span></a></p> <ul class="list-group"> <li class="list-group-item"> Real Clear Politcs <span class="glyphicon" ng-class="{
+<h1>Polls</h1> <p> View the most recent polls from various aggregators and sources. </p> <!-- <pre>{{status | json}}</pre> --> <p><a class="btn btn-lg btn-success" ng-click="refreshAll()">Refresh All <span class="glyphicon glyphicon-download"></span></a></p> <ul class="list-group"> <li class="list-group-item"> <a ng-href="#/rcp">Real Clear Politics</a> <span class="glyphicon" ng-class="{
         'glyphicon-refresh glyphicon-refresh-animate': status.$getRecord('rcp')['$value'] === 'loading',
         'glyphicon-ok text-success': status.$getRecord('rcp')['$value'] === 'complete',
-        'glyphicon-remove text-danger': status.$getRecord('rcp') == undefined
-        }"> </span> </li> <li class="list-group-item"> Huffpost Pollster <span class="glyphicon" ng-class="{
+        'glyphicon-remove text-danger': status.$getRecord('rcp')['$value'] === 'error',
+        'glyphicon-refresh glyphicon-refresh-animate': status.$getRecord('rcp') == undefined
+        }"> </span> </li> <li class="list-group-item"> <a ng-href="#/hp">Huffpost Pollster</a> <span class="glyphicon" ng-class="{
         'glyphicon-refresh glyphicon-refresh-animate': status.$getRecord('hp')['$value'] === 'loading',
         'glyphicon-ok text-success': status.$getRecord('hp')['$value'] === 'complete',
-        'glyphicon-remove text-danger': status.$getRecord('hp') == undefined
-      }"> </span> </li> <li class="list-group-item"> DailyKos <span class="glyphicon" ng-class="{
-        'glyphicon-refresh glyphicon-refresh-animate': status.$getRecord('dkos')['$value'] === 'loading',
-        'glyphicon-ok text-success': status.$getRecord('dkos')['$value'] === 'complete',
-        'glyphicon-remove text-danger': status.$getRecord('dkos') == undefined
-      }"> </span> </li> <li class="list-group-item"> Quinnipiac <span class="glyphicon" ng-class="{
+        'glyphicon-remove text-danger': status.$getRecord('rcp')['$value'] === 'error',
+        'glyphicon-refresh glyphicon-refresh-animate': status.$getRecord('hp') == undefined
+      }"> </span> </li> <li class="list-group-item">DailyKos (no spreadsheet yet)</li> <li class="list-group-item">PollingReport (too hard to scrape)</li> <li class="list-group-item">Roper (not implemented)</li> <li class="list-group-item"> <a ng-href="#/quinnipiac">Quinnipiac</a> <span class="glyphicon" ng-class="{
         'glyphicon-refresh glyphicon-refresh-animate': status.$getRecord('quinnipiac')['$value'] === 'loading',
         'glyphicon-ok text-success': status.$getRecord('quinnipiac')['$value'] === 'complete',
-        'glyphicon-remove text-danger': status.$getRecord('quinnipiac') == undefined
-      }"> </span> </li> <li class="list-group-item"> Public Policy Polling <span class="glyphicon" ng-class="{
-        'glyphicon-refresh glyphicon-refresh-animate': status.$getRecord('ppp')['$value'] === 'loading',
-        'glyphicon-ok text-success': status.$getRecord('ppp')['$value'] === 'complete',
-        'glyphicon-remove text-danger': status.$getRecord('ppp') == undefined
-      }"> </span> </li> <li class="list-group-item"> Marist <span class="glyphicon" ng-class="{
-        'glyphicon-refresh glyphicon-refresh-animate': status.$getRecord('marist')['$value'] === 'loading',
-        'glyphicon-ok text-success': status.$getRecord('marist')['$value'] === 'complete',
-        'glyphicon-remove text-danger': status.$getRecord('marist') == undefined
-      }"> </span> </li> <li class="list-group-item"> AP <span class="glyphicon" ng-class="{
-        'glyphicon-refresh glyphicon-refresh-animate': status.$getRecord('marist')['$value'] === 'loading',
-        'glyphicon-ok text-success': status.$getRecord('marist')['$value'] === 'complete',
-        'glyphicon-remove text-danger': status.$getRecord('marist') == undefined
-      }"> </span> </li> </ul> <!-- glyphicon-remove -->
+        'glyphicon-remove text-danger': status.$getRecord('rcp')['$value'] === 'error',
+        'glyphicon-refresh glyphicon-refresh-animate': status.$getRecord('quinnipiac') == undefined
+      }"> </span> </li> <li class="list-group-item">Public Policy Polling (not implemented)</li> <li class="list-group-item">Marist (not implemented)</li> <li class="list-group-item">AP (not implemented)</li> <li class="list-group-item">Gravis (not implemented)</li> <li class="list-group-item">SurveyUSA (not implemented)</li> </ul> <!-- glyphicon-remove -->
