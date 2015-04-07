@@ -26,7 +26,7 @@ class QuinnipiacCurrent(object):
 
 			poll = {"id": release_id, "date": date, "states": states, "text": text}
 
-			if date >= datetime.datetime.today().date() - datetime.timedelta(3):
+			if date >= datetime.datetime.today().date() - datetime.timedelta(1):
 				result = firebase.post(url='/quinnipiac', data=poll, headers={'print': 'pretty'})
 				print release_id, " | ", date, "|", states, "|", text
 			else:
