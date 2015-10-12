@@ -26,7 +26,7 @@ class RCPCurrent(object):
 			poll['pollster'] = parser.unescape(poll['pollster'])
 			# print candidates_values
 			# print ""
-			response = requests.get("http://cdn.realclearpolitics.com/epolls/json/%s_polling_module.js" % poll['poll_id'])
+			response = requests.get("http://www.realclearpolitics.com/epolls/json/%s_polling_module.js" % poll['poll_id'])
 			try:
 				module = json.loads(response.content.replace("\\'", "'"))
 				module['rcp_polls']['moduleInfo']['lastBuildDate'] = dateutil.parser.parse(module['rcp_polls']['moduleInfo']['lastBuildDate'])
@@ -71,6 +71,7 @@ class RCPCurrent(object):
 
 		result = firebase.put(url='/status', name="rcp", data="complete", headers={'print': 'pretty'})
 
+# This method no longer works
 def get_module_ids():
 	response = requests.get("http://cdn.realclearpolitics.com/epolls/json/")
 	logging.debug("lxml parsing response")
@@ -106,7 +107,7 @@ def get_races():
 	])
 
 	for election, election_id in election_ids.iteritems():
-		data = requests.get("http://cdn.realclearpolitics.com/epolls/json/%d_map.js" % election_id).json()
+		data = requests.get("http://www.realclearpolitics.com/epolls/json/%d_map.js" % election_id).json()
 		for race in data['election']['race']:
 			race['election'] = election
 			race['_id'] = race['id']
@@ -256,7 +257,7 @@ if __name__ == '__main__':
 				print rcp_pollster['_id'], "| saved"
 				rcp_pollsters.save(rcp_pollster)
 
-	RCPCurrent.download()
+	# RCPCurrent.download()
 
 
 	# group_pollsters_by_id()
