@@ -61,7 +61,7 @@ class RCPCurrent(object):
 
 		firebase.delete('/rcp', None)
 
-		data = requests.get("http://cdn.realclearpolitics.com/epolls/json/latest_election_polls_clean.js").json()
+		data = requests.get("http://www.realclearpolitics.com/epolls/json/latest_election_polls_clean.js").json()
 		for poll in data['election']['poll']:
 			date = dateutil.parser.parse(poll['date']).date()
 			if date >= datetime.datetime.today().date() - datetime.timedelta(1):
