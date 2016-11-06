@@ -62,13 +62,14 @@ class RCPCurrent(object):
 
 		firebase.delete('/rcp', None)
 
-		data = requests.get("http://www.realclearpolitics.com/epolls/json/latest_election_polls_clean.js").json()
+		data = requests.get("http://www.realclearpolitics.com/epolls/latest_polls/elections/index.js").json()
+		# data = requests.get("http://www.realclearpolitics.com/epolls/json/latest_election_polls_clean.js").json()
 		for poll in data['election']['poll']:
 			date = dateutil.parser.parse(poll['date']).date()
-			# if date >= datetime.datetime.today().date() - datetime.timedelta(1):
-			module_poll = find_poll_in_module(poll)
-			result = firebase.post(url='/rcp', data={"poll": poll, "module_poll": module_poll}, headers={'print': 'pretty'})
-			print module_poll['id'], "|", poll['date'], poll['pollster'], "|", poll['race'], "|", poll['poll_id']
+			if date >= datetime.datetime.today().date() - datetime.timedelta(1):
+				module_poll = find_poll_in_module(poll)
+				result = firebase.post(url='/rcp', data={"poll": poll, "module_poll": module_poll}, headers={'print': 'pretty'})
+				print module_poll['id'], "|", poll['date'], poll['pollster'], "|", poll['race'], "|", poll['poll_id']
 
 		result = firebase.put(url='/status', name="rcp", data="complete", headers={'print': 'pretty'})
 
