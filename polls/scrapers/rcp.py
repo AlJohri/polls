@@ -1,8 +1,9 @@
 from polls.models import rcp_races, rcp_modules, rcp_questions, rcp_pollsters, fte_pollsters
 from polls.models import firebase
-import re, requests, lxml.html, logging, datetime, json
+import re, csv, requests, lxml.html, logging, datetime, json
 from pprint import pprint as pp
 from collections import defaultdict, OrderedDict
+from polls import DATA_FOLDER
 
 import dateutil.parser
 
@@ -64,16 +65,16 @@ class RCPCurrent(object):
 		data = requests.get("http://www.realclearpolitics.com/epolls/json/latest_election_polls_clean.js").json()
 		for poll in data['election']['poll']:
 			date = dateutil.parser.parse(poll['date']).date()
-			if date >= datetime.datetime.today().date() - datetime.timedelta(1):
-				module_poll = find_poll_in_module(poll)
-				result = firebase.post(url='/rcp', data={"poll": poll, "module_poll": module_poll}, headers={'print': 'pretty'})
-				print module_poll['id'], "|", poll['date'], poll['pollster'], "|", poll['race'], "|", poll['poll_id']
+			# if date >= datetime.datetime.today().date() - datetime.timedelta(1):
+			module_poll = find_poll_in_module(poll)
+			result = firebase.post(url='/rcp', data={"poll": poll, "module_poll": module_poll}, headers={'print': 'pretty'})
+			print module_poll['id'], "|", poll['date'], poll['pollster'], "|", poll['race'], "|", poll['poll_id']
 
 		result = firebase.put(url='/status', name="rcp", data="complete", headers={'print': 'pretty'})
 
 # This method no longer works
 def get_module_ids():
-	response = requests.get("http://cdn.realclearpolitics.com/epolls/json/")
+	response = requests.get("http://www.realclearpolitics.com/epolls/json/")
 	logging.debug("lxml parsing response")
 	doc = lxml.html.fromstring(response.content)
 	filenames = [x.get('href') for x in doc.cssselect("tr td a")]
@@ -103,7 +104,13 @@ def get_races():
 		("2012 Governor", 24),
 		("2014 Senate", 25),
 		("2014 Governor", 26),
-		("2014 House", 28)
+		("2014 House", 28),
+		("2016 President", 29), # Test 34
+		# ("2016 President (Trump vs. Sanders)", 29),
+		("2016 Senate", 31),
+		("2016 House", 32),
+		("2016 Governor", 33),
+
 	])
 
 	for election, election_id in election_ids.iteritems():
@@ -187,7 +194,8 @@ def group_pollsters_by_name_and_id(log=False):
 	pollsters_by_name = group_pollsters_by_name()
 	pollsters_by_id = group_pollsters_by_id()
 
-	del pollsters_by_id[None]
+	if None in pollsters_by_id:
+		del pollsters_by_id[None]
 
 	duplicate_names = {}
 	for pollster_id, pollster_names in pollsters_by_id.iteritems():
@@ -239,7 +247,7 @@ if __name__ == '__main__':
 
 	if rcp_pollsters.find({"ftename": {"$exists": True}}).count() == 0:
 
-		with open("data/rcp_mapping.csv") as f:
+		with open(DATA_FOLDER + "/rcp_mapping.csv") as f:
 			reader = csv.reader(f)
 			for row in reader:
 				pollster = rcp_pollsters.find_one(row[0])
